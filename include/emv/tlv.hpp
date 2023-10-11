@@ -157,9 +157,10 @@ std::string tagDescription(uint32_t tag) {
     }
 }
 
-void tlvParse(std::vector<uint8_t> const& tlv,
-              std::multimap<uint32_t, std::vector<uint8_t>>& data,
-              std::string const& prefix)
+void tlvParse(
+    std::vector<uint8_t> const& tlv,
+    std::multimap<uint32_t, std::vector<uint8_t>>& data,
+    std::string const& prefix)
 {
     // https://www.openscdp.org/scripts/tutorial/emv/tlv.html
 
@@ -192,9 +193,9 @@ void tlvParse(std::vector<uint8_t> const& tlv,
         data.emplace(tag, val);
 
         LOG(info) << prefix
-                  << "0x" << tools::bytesToHex(tag)
-                  << ": "   << tools::bytesToHex(val)
-                  << " ("   << tagDescription(tag) << ")";
+            << "0x" << tools::bytesToHex(tag)
+            << ": "   << tools::bytesToHex(val)
+            << " ("   << tagDescription(tag) << ")";
 
         if(constructed)
             tlvParse(val, data, "    "+prefix);
